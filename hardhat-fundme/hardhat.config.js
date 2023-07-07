@@ -1,8 +1,5 @@
-require("@nomiclabs/hardhat-waffle")
-require("hardhat-gas-reporter")
-require("@nomiclabs/hardhat-etherscan")
+require("@nomicfoundation/hardhat-toolbox")
 require("dotenv").config()
-require("solidity-coverage")
 require("hardhat-deploy")
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
