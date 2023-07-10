@@ -18,5 +18,10 @@
     "solidity-coverage": "^0.8.4",
     "typechain": "^8.2.0",
     "dotenv": "^16.3.1"
+  },
+  "scripts": {
+    "test": "yarn hardhat test",
+    "test:staging" : "yarn hardhat test --network sepolia",
+    
   }
 }
