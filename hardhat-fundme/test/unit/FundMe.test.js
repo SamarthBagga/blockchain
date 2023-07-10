@@ -58,20 +58,20 @@ describe("FundMe", async function () {
             const transactionResponse = await fundMe.withdraw()
             const transactionReceipt = await transactionResponse.wait(1)
             const { gasUsed, effectiveGasPrice } = transactionReceipt
-            const gasCost = gasUsed.mul(effectiveGasPrice)
+            const gasCost = gasUsed * (effectiveGasPrice)
 
-            const endingFundMeBalance = await fundMe.provider.getBalance(
+            const endingFundMeBalance = await ethers.provider.getBalance(
                 await fundMe.getAddress()
             )
-            const endingDeployerBalance = await fundMe.provider.getBalance(
+            const endingDeployerBalance = await ethers.provider.getBalance(
                 deployer
             )
             //gasCost
             //Assert
             assert.equal(endingFundMeBalance, 0)
             assert.equal(
-                startingFundMeBalance.add(startingDeployerBalance),
-                endingDeployerBalance.add(gasCost).toString()
+                startingFundMeBalance + (startingDeployerBalance),
+                endingDeployerBalance + (gasCost)
             )
         })
         it("allows us to withdraw with multiple funders", async function () {
@@ -94,13 +94,13 @@ describe("FundMe", async function () {
             const transactionResponse = await fundMe.withdraw()
             const transactionReceipt = await transactionResponse.wait(1)
             const { gasUsed, effectiveGasPrice } = transactionReceipt
-            const gasCost = gasUsed.mul(effectiveGasPrice)
+            const gasCost = gasUsed * (effectiveGasPrice)
 
             //Assert
             assert.equal(endingFundMeBalance, 0)
             assert.equal(
-                startingFundMeBalance.add(startingDeployerBalance),
-                endingDeployerBalance.add(gasCost).toString()
+                startingFundMeBalance + (startingDeployerBalance),
+                endingDeployerBalance + (gasCost)
             )
 
             //Make sure the funders are reset properly
