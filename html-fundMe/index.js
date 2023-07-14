@@ -15,6 +15,7 @@ async function connect() {
 }
 
 async function fund(ethAmount) {
+    const ethAmount = document.getElementById("ethAmount").value
     console.log(`Funding with ${ethAmount}`)
     if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -39,7 +40,7 @@ function listenForTransactionMine(transactionResponse, provider) {
     return new Promise((resolve, reject) => {
         provider.once(transactionResponse.hash, (transactionReceipt) => {
             console.log(
-                `completed with ${transactionReceipt.confirmations} confirmations`,
+                `Completed with ${transactionReceipt.confirmations} confirmations`,
             )
             resolve()
         })
