@@ -52,7 +52,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function enterRaffle() public payable{
         if(msg.value < i_entranceFee){revert Raffle_NotEnoughETHEntered(); }
-        if (s_raffleState != RaffleState.Open){
+        if (s_raffleState != RaffleState.OPEN){
             revert Raffle__NotOpen();
         }
         s_players.push(payable(msg.sender));
@@ -62,7 +62,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
 
 
-    function checkUpkeep(bytes calldata /*checkData*/) public override returns (bool upkeepNeeded, bytes memory) {
+    function checkUpkeep(bytes memory /*checkData*/) public override returns (bool upkeepNeeded, bytes memory) {
         bool isOpen = (RaffleState.OPEN == s_raffleState);
         bool timePassed = ((block.timestamp - s_lastTimeStamp) > i_interval);
         bool hasPlayers = (s_players.length > 0);
@@ -77,7 +77,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         // 2 transaction process
         (bool upkeepNeeded, ) = checkUpkeep("");
         if(!upkeepNeeded) {
-            revert Raffle__UpkeepNotNeeded(address(this).balance, s_player.length, uint256(s_raffleState));
+            revert Raffle__UpkeepNotNeeded(address(this).balance, s_players.length, uint256(s_raffleState));
         }
         s_raffleState = RaffleState.CALCULATING;
         uint256 requestId = i_vrfCoordinator.requestRandomWords(
@@ -96,6 +96,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         s_recentWinner = recentWinner;
         s_raffleState = RaffleState.OPEN;
         s_players = new address payable[](0);
+        s_lastTimeStamp = block.timestamp;
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
         // require(success)
         if(!success){
@@ -116,5 +117,25 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function getRecentWinner() public view returns(address) {
         return s_recentWinner;
+    }
+
+    function getRaffleState() public view returns (RaffleState){
+        return s_raffleState;
+    }
+
+    function getNumWords() public view returns(uint256){
+        return NUM_WORDS;
+    }
+
+    function getNumberOfPlayers() public view returns(uint256){
+        return s_players.length;
+    }
+
+    function getLatestTimeStamp() public view returns(uint256){
+        return s_lastTimeStamp;
+    }
+
+    function getRequestConfirmations() public pure returns(uint256){
+        return REQUEST_CONFIRMATIONS;
     }
 }
