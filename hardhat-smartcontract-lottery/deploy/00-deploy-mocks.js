@@ -1,8 +1,10 @@
 const { network } = require("hardhat")
 const { developmentChains } = require("../helper-hardhat-config")
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers")
+const { ethers } = require("hardhat")
 
-const BASE_FEE = ethers.utils.parseEther("0.25")
+
+const BASE_FEE = ethers.parseEther("0.25")
 const GAS_PRICE_LINK = 1e9 //calculated value based on the gas price of
 
 module.exports = async function ({ getNamedAccounts, deployments }) {
