@@ -22,5 +22,8 @@
     "solhint": "^3.4.1",
     "solidity-coverage": "^0.8.4",
     "typechain": "^8.1.0"
+  },
+  "dependencies": {
+    "hardhat-deploy-ethers": "^0.4.1"
   }
 }
