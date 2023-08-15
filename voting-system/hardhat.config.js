@@ -1,16 +1,16 @@
 require("@nomicfoundation/hardhat-toolbox")
-require("@nomicfoundation/hardhat-verify")
-require("hardhat-gas-reporter")
-require("hardhat-deploy")
-require("@nomicfoundation/hardhat-ethers")
-require("hardhat-deploy-ethers")
 require("dotenv").config()
+// You need to export an object to set up your config
+// Go to https://hardhat.org/config/ to learn more
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
 
-/** @type import('hardhat/config').HardhatUserConfig */
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
-const PRIVATE_KEY =
-    process.env.PRIVATE_KEY || "0x11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a"
+const PRIVATE_KEY = 
+    process.env.PRIVATE_KEY ||
+    "0x11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
     networks: {
         hardhat: {
             chainId: 31337,
-            blockConfirmations: 1,
+            // gasPrice: 130000000000,
         },
         sepolia: {
             url: SEPOLIA_RPC_URL,
@@ -26,6 +26,20 @@ module.exports = {
             chainId: 11155111,
             blockConfirmations: 6,
         },
+        localhost: {
+            url: "http://172.25.48.1:7545",
+            chainId: 1337,
+        },
+    },
+    solidity: {
+        compilers: [
+            {
+                version: "0.8.7",
+            },
+            {
+                version: "0.6.6",
+            },
+        ],
     },
     etherscan: {
         apiKey: ETHERSCAN_API_KEY,
@@ -38,16 +52,13 @@ module.exports = {
         noColors: true,
         // coinmarketcap: COINMARKETCAP_API_KEY,
     },
-    solidity: "0.8.18",
     namedAccounts: {
         deployer: {
-            default: 0,
-        },
-        player: {
-            default: 1,
+            default: 0, // here this will by default take the first account as deployer
+            1: 0, // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
         },
     },
     mocha: {
-        timeout: 200000,
+        timeout: 500000,
     },
 }

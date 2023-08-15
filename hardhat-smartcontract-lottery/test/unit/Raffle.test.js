@@ -1,6 +1,5 @@
 const { network, getNamedAccounts, deployments, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../../helper-hardhat-config")
-const { isCallTrace } = require("hardhat/internal/hardhat-network/stack-traces/message-trace")
 const { assert, expect } = require("chai")
 
 !developmentChains.includes(network.name)
