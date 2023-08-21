@@ -7,10 +7,10 @@ const networkConfig = {
     },
     11155111: {
         name: "sepolia",
-        vrfCoordinatorV2: "0x271682DEB8C4E0901D1a1550aD2e64D568E69909",
+        vrfCoordinatorV2: "0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625",
         raffleEntranceFee: ethers.parseEther("0.01"),
         gasLane: "0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c",
-        subscriptionId: "4435",
+        subscriptionId: "4541",
         callbackGasLimit: "500000",
         keepersUpdateInterval: "30",
     },
