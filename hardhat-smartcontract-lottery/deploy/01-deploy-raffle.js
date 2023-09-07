@@ -20,7 +20,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         vrfCoordinatorV2Address = await vrfCoordinatorV2Mock.getAddress()
         const transactionResponse = await vrfCoordinatorV2Mock.createSubscription()
         const transactionReceipt = await transactionResponse.wait()
-        subscriptionId = transactionReceipt.events[0].args.subId
+        subscriptionId = 1
                 // Fund the subscription
         // Our mock makes it so we don't actually have to worry about sending fund
         await vrfCoordinatorV2Mock.fundSubscription(subscriptionId, FUND_AMOUNT)

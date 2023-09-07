@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useMoralis } from "react-moralis"
 
 export default function Header() {
-    const { enableWeb3, account, isWeb3Enabled, Moralis } = useMoralis()
+    const { enableWeb3, account, isWeb3Enabled, Moralis, isWeb3EnableLoading } = useMoralis()
 
     useEffect(() => {
         if (isWeb3Enabled) return
@@ -37,6 +37,7 @@ export default function Header() {
                             window.localStorage.setItem("connected", "injected")
                         }
                     }}
+                    disabled={isWeb3EnableLoading}
                 >
                     Connect
                 </button>
