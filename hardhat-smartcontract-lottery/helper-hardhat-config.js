@@ -15,12 +15,12 @@ const networkConfig = {
         keepersUpdateInterval: "30",
     },
     31337: {
-        name: "hardhat",
-        subscriptionId: "6926",
-        raffleEntranceFee: ethers.parseEther("0.01"),
-        gasLane: "0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c",
+        name: "localhost",
+        subscriptionId: "588",
+        gasLane: "0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c", // 30 gwei
         keepersUpdateInterval: "30",
-        callbackGasLimit: "500000",
+        raffleEntranceFee: ethers.parseEther("0.01"), // 0.01 ETH
+        callbackGasLimit: "500000", // 500,000 gas
     },
 }
 
