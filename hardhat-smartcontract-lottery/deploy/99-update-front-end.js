@@ -17,7 +17,7 @@ module.exports = async () => {
 
 async function updateAbi() {
     const raffle = await ethers.getContract("Raffle")
-    fs.writeFileSync(FRONT_END_ABI_FILE, raffle.interface.format(ethers.utils.FormatTypes.json))
+    // fs.writeFileSync(FRONT_END_ABI_FILE, raffle.interface.format(ethers.utils.FormatTypes.json))
 }
 
 
