@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@aave/protocol-v2": "^1.0.1",
     "@chainlink/contracts": "^0.6.1",
     "@nomicfoundation/hardhat-chai-matchers": "1",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
@@ -23,9 +24,9 @@
     "test": "yarn hardhat test",
     "test:staging": "yarn hardhat test --network sepolia",
     "lint": "yarn solhint 'contracts/*.sol'",
-    "lint:fix":"yarn solhint 'contracts/*.sol' --fix",
+    "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
     "format": "yarn prettier --write .",
-    "coverage":"yarn hardhat coverage"
+    "coverage": "yarn hardhat coverage"
   },
   "dependencies": {
     "solhint": "^3.4.1"
