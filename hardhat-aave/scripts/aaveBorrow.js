@@ -18,12 +18,12 @@ async function main() {
     //approve
     await approveErc20(
         wethTokenAddress,
-        await lendingPool.getAddress(),
+        lendingPoolContractAddress,
         AMOUNT,
-        deployer
+        signer
     )
     console.log("Depositing...")
-    await lendingPool.deposit(wethTokenAddress, AMOUNT, deployer, 0)
+    await lendingPool.deposit(wethTokenAddress, AMOUNT, signer, 0)
     console.log("Deposited !!!")
 }
 
