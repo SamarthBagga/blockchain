@@ -12,6 +12,8 @@ async function main() {
 	console.log(`Lending Pool address ${lendingPoolContractAddress}`);
 
     // time to depositt!!!!
+
+    const wethTokenAddress = "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9"
 }
 
 async function getLendingPool(account) {
@@ -28,6 +30,10 @@ async function getLendingPool(account) {
 		account
 	);
 	return lendingPool;
+}
+
+async function approveErc20(contractAddress, spenderAddress, amountToSpend, account){
+    
 }
 
 main()
