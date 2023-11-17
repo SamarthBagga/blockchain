@@ -11,6 +11,7 @@ module.exports = {
       },
     },
   },
+  defaultNetwork: "sepolia",
   networks: {
     zksync_testnet: {
       url: "https://zksync2-testnet.zksync.dev",
@@ -23,6 +24,11 @@ module.exports = {
       ethNetwork: "mainnet",
       chainId: 324,
       zksync: true,
+    },
+    hardhat: {},
+    sepolia: {
+      url: "https://eth-sepolia.g.alchemy.com/v2/kLlSgWn31V_kgHEFZy13x_WMWMOBoE1n",
+      accounts: process.env.PRIVATE_KEY,
     },
   },
   paths: {
